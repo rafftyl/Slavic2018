@@ -1,12 +1,7 @@
-
-using System;
+using UnityEngine;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
-public class AttractionController : CharacterController , IAttractionHeatmapReceiver {
-
-    public AttractionController() {
-    }
-
+public class AttractionController : CharacterController, IAttractionHeatmapReceiver
+{
+    public AttractionHeatmapper AttractionHeatmapper { set => throw new System.NotImplementedException(); }
 }

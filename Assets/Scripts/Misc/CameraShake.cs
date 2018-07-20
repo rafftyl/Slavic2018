@@ -1,13 +1,7 @@
-
-using System;
+using UnityEngine;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
-public class CameraShake {
-
-    public CameraShake() {
-    }
-
-
+public class CameraShake : ScriptableObject
+{
+    
 }

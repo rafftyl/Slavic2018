@@ -1,12 +1,8 @@
-
-using System;
+using UnityEngine;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
-public class HoeAudioEffectController : AudioEffectController {
-
-    public HoeAudioEffectController() {
-    }
+[RequireComponent(typeof(HoeImpression))]
+public class HoeAudioEffectController : AudioEffectController
+{
 
 }

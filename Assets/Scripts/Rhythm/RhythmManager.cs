@@ -1,14 +1,7 @@
-
-using System;
+using UnityEngine;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
-public class RhythmManager : IAudioManagerReceiver {
-
-    public RhythmManager() {
-    }
-
-
-
+public class RhythmManager : MonoBehaviour, IAudioManagerReceiver
+{
+    public AudioManager AudioManager { set => throw new System.NotImplementedException(); }
 }

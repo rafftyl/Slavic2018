@@ -1,15 +1,17 @@
-
-using System;
+using UnityEngine;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
-public class AttractionHeatmapper {
+public class AttractionHeatmapper : MonoBehaviour
+{
+    List<IAttractionGenerator> attractionGenerators;
 
-    public AttractionHeatmapper() {
+    void RegisterGenerator(IAttractionGenerator generator)
+    {
+        attractionGenerators.Add(generator);
     }
 
-    public List<IAttractionGenerator> AttractionGenerators;
-
-
+    void UnregisterGenerator(IAttractionGenerator generator)
+    {
+        attractionGenerators.Remove(generator);
+    }
 }

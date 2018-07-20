@@ -1,11 +1,4 @@
-
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-public interface IAttractionHeatmapReceiver {
-
-    public AttractionHeatmapper AttractionHeatmapper;
-
+public interface IAttractionHeatmapReceiver
+{
+    AttractionHeatmapper AttractionHeatmapper { set; }
 }

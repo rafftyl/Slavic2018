@@ -1,16 +1,8 @@
-
-using System;
+using UnityEngine;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
-public class MovementComponent {
-
-    public MovementComponent() {
-    }
-
-    public float MovementSpeed;
-
-    public Vector2 MovementDirection;
-
+public class MovementComponent : MonoBehaviour
+{
+    public float MovementSpeed { get; set; }
+    public Vector2 MovementDirection { get; set; }
 }

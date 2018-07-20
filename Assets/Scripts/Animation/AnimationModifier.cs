@@ -1,18 +1,11 @@
-
-using System;
+using UnityEngine;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
-public class AnimationModifier {
+[RequireComponent(typeof(RhythmAnimationController))]
+public class AnimationModifier : MonoBehaviour
+{
+    RhythmAnimationController animController;
 
-    public AnimationModifier() {
-    }
-
-    public RhythmAnimationController AnimController;
-
-    public List<RhythmSpriteSequence> SpriteSequences;
-
-
-
+    [SerializeField]
+    List<RhythmSpriteSequence> spriteSequences;
 }

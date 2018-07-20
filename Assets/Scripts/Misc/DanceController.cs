@@ -1,17 +1,20 @@
-
-using System;
+using UnityEngine;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
-public class DanceController : AnimationModifier , IGameStateReceiver, IRhythmListener, IAttractionGenerator {
+public class DanceController : AnimationModifier , IGameStateReceiver, IRhythmListener, IAttractionGenerator
+{
+    List<IDanceListener> danceListeners;
 
-    public DanceController() {
+    public GameState GameState { set => throw new System.NotImplementedException(); }
+
+    public Vector2 Position => throw new System.NotImplementedException();
+
+    public float Attraction => throw new System.NotImplementedException();
+
+    public float AttractionFalloff => throw new System.NotImplementedException();
+
+    public void MetronomeTick(int value, float intensity, bool accent)
+    {
+        throw new System.NotImplementedException();
     }
-
-    public List<IDanceListener> DanceListeners;
-
-
-
-
 }

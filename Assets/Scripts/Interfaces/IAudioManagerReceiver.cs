@@ -1,11 +1,4 @@
-
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-public interface IAudioManagerReceiver {
-
-    public AudioManager AudioManager;
-
+public interface IAudioManagerReceiver
+{
+    AudioManager AudioManager { set; }
 }

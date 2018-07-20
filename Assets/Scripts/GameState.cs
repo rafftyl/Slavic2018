@@ -1,25 +1,20 @@
-
-using System;
+using UnityEngine;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
-public class GameState {
-
-    public GameState() {
-    }
-
-
-
-    public void StartGame() {
+public class GameState : MonoBehaviour
+{
+    public void StartGame()
+    {
         // TODO implement here
     }
 
-    public void PauseGame() {
+    public void PauseGame()
+    {
         // TODO implement here
     }
 
-    public void StopGame() {
+    public void StopGame()
+    {
         // TODO implement here
     }
 

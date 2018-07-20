@@ -1,13 +1,10 @@
-
-using System;
+using UnityEngine;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
-public class RhythmAnimationController : IRhythmListener {
-
-    public RhythmAnimationController() {
+public class RhythmAnimationController : MonoBehaviour, IRhythmListener
+{
+    public void MetronomeTick(int value, float intensity, bool accent)
+    {
+        throw new System.NotImplementedException();
     }
-
-
 }

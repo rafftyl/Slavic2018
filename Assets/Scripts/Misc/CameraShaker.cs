@@ -1,15 +1,13 @@
-
-using System;
+using UnityEngine;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
-public class CameraShaker : IRhythmListener {
+public class CameraShaker : MonoBehaviour, IRhythmListener
+{
+    [SerializeField]
+    List<CameraShake> cameraShakes;
 
-    public CameraShaker() {
+    public void MetronomeTick(int value, float intensity, bool accent)
+    {
+        throw new System.NotImplementedException();
     }
-
-    public List<CameraShake> CameraShakes;
-
-
 }

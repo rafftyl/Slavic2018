@@ -8,9 +8,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: b549417b64d674d428c0b7040ca6f690, type: 3}
   m_Name: Floor
-  m_EditorClassIdentifier: Assembly-CSharp::RhythmMaterialSequence
+  m_EditorClassIdentifier: 
   materialsPerBeat:
   - materials:
     - {fileID: 2100000, guid: aa252a41a46a9194fbaaf1e619557d93, type: 2}

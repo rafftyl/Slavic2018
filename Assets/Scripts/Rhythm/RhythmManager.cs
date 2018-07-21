@@ -66,7 +66,7 @@ public class RhythmManager : MonoBehaviour, IAudioManagerReceiver, IGameStartLis
                 float currentTimeSignature = currentRhythmData.TimeSignature;
                 float currentBeatDuration = SECONDS_IN_MINUTE / currentRhythmData.BeatsPerMinute;
 
-                currentBeatTime += Time.deltaTime;
+                currentBeatTime += Time.fixedDeltaTime;
                 if (currentBeatTime > currentBeatDuration)
                 {
                     currentBeatTime = 0;

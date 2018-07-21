@@ -123,7 +123,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47aea7e632fbab9418413f89cdb660e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spriteSequence: {fileID: 0}
+  spriteSequence: {fileID: 11400000, guid: 1fae6e0a05638394584a5ae4e91cdace, type: 2}
 --- !u!135 &135019255372290900
 SphereCollider:
   m_ObjectHideFlags: 1

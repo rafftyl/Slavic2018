@@ -32,4 +32,9 @@ public class CookCopter : Dance
             }
         }
     }
+
+    public override float GetEffectRadius()
+    {
+        return WOO_RANGE;
+    }
 }

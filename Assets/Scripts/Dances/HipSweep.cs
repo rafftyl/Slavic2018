@@ -26,4 +26,9 @@ public class HipSweep : Dance
             character.AddComponent<DamageComponent>().playerNumber = character.GetComponent<Dancer>().PlayerNumber; ;
         }
     }
+
+    public override float GetEffectRadius()
+    {
+        return 0.25f;
+    }
 }

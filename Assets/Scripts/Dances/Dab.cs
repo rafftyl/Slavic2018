@@ -25,4 +25,9 @@ public class Dab : Dance
             cooldown = THRUST_COOLDOWN;
         }
     }
+
+    public override float GetEffectRadius()
+    {
+        return 0.0f;
+    }
 }

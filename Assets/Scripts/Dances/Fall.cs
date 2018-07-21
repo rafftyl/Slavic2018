@@ -30,4 +30,9 @@ public class Fall : Dance
             timeLeft -= Time.deltaTime;
         }
     }
+
+    public override float GetEffectRadius()
+    {
+        return 0.0f;
+    }
 }

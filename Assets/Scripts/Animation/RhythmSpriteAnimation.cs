@@ -7,7 +7,7 @@ using UnityEngine.Assertions;
 public class RhythmSpriteAnimation : RhythmAnimationController, IRhythmListener
 {
     [SerializeField]
-    RhythmSpriteSequence materialSequence;
+    RhythmSpriteSequence spriteSequence;
     Sprite[] currentSpriteArray;
     SpriteRenderer renderer;
     float spriteDisplayDuration;
@@ -18,15 +18,15 @@ public class RhythmSpriteAnimation : RhythmAnimationController, IRhythmListener
     void Awake()
     {
         renderer = GetComponent<SpriteRenderer>();
-        Assert.IsNotNull(materialSequence);
+        Assert.IsNotNull(spriteSequence);
     }
 
     public void MetronomeTick(int measure, int beatNumber, float intensity, bool accent, float timeToNextTick)
     {
-        int materialArrayIndex = beatNumber % materialSequence.SpritesPerBeat.Length;
-        currentSpriteArray = materialSequence.SpritesPerBeat[materialArrayIndex].sprites;
+        int materialArrayIndex = beatNumber % spriteSequence.SpritesPerBeat.Length;
+        currentSpriteArray = spriteSequence.SpritesPerBeat[materialArrayIndex].sprites;
         spriteDisplayTimer = 0;
-        spriteDisplayDuration = timeToNextTick / materialSequence.SpritesPerBeat[materialArrayIndex].sprites.Length;
+        spriteDisplayDuration = timeToNextTick / spriteSequence.SpritesPerBeat[materialArrayIndex].sprites.Length;
         spriteIndex = 0;
         renderer.sprite = currentSpriteArray[spriteIndex];
         isTickReceived = true;

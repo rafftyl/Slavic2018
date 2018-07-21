@@ -52,7 +52,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47aea7e632fbab9418413f89cdb660e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  materialSequence: {fileID: 11400000, guid: 1a11cb85a74a7cf438bde01cfa2b445b, type: 2}
+  spriteSequence: {fileID: 11400000, guid: 1a11cb85a74a7cf438bde01cfa2b445b, type: 2}
 --- !u!212 &212406787572614208
 SpriteRenderer:
   m_ObjectHideFlags: 1

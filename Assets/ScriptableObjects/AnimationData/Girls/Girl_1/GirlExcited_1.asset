@@ -11,4 +11,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbdc6cea1a9a0e54ba66b6c928c18830, type: 3}
   m_Name: GirlExcited_1
   m_EditorClassIdentifier: 
-  spritesPerBeat: []
+  spritesPerBeat:
+  - sprites:
+    - {fileID: 21300000, guid: ae12c463e9853b744a22b4aee400c8f7, type: 3}
+  - sprites:
+    - {fileID: 21300000, guid: d10af80c23ebeab4cbdafefca7403328, type: 3}

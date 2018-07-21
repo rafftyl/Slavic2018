@@ -32,7 +32,7 @@ public class Girl : MonoBehaviour, IGameStateReceiver
     [SerializeField]
     public float SLAP_COOLDOWN = 1.0f;
     [SerializeField]
-    public float REACTION_RANGE = 10.0f;
+    public float REACTION_RANGE = 3.0f;
     [SerializeField]
     public float SCORE_RATE = 1.0f;
 
@@ -92,6 +92,15 @@ public class Girl : MonoBehaviour, IGameStateReceiver
         if(takenBy != NOT_TAKEN)
         {
             gameState.AddScoreForPlayer(takenBy, SCORE_RATE * Time.deltaTime);
+            Collider[] collidersInRange = Physics.OverlapSphere(transform.position, 20);
+            foreach (var collider in collidersInRange)
+            {
+                Dancer dancer = collider.gameObject.GetComponent<Dancer>();
+                if (dancer != null && dancer.PlayerNumber == takenBy)
+                {
+                    //GetComponent<Rigidbody>().AddForce(character.GetComponent<Dancer>().MovementDirection * FORCE_IMPULSE);
+                }
+            }
         }
         DetermineAnimation();
     }

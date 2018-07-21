@@ -11,4 +11,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbdc6cea1a9a0e54ba66b6c928c18830, type: 3}
   m_Name: Fall_1
   m_EditorClassIdentifier: 
-  spritesPerBeat: []
+  spritesPerBeat:
+  - sprites:
+    - {fileID: 21300000, guid: 295ee958e61aca347ac9e434807397db, type: 3}

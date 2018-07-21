@@ -3,17 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
 
+
 [RequireComponent(typeof(SpriteRenderer))]
 public class RhythmSpriteAnimation : RhythmAnimationController, IRhythmListener
 {
     [SerializeField]
     RhythmSpriteSequence spriteSequence;
+    public RhythmSpriteSequence SpriteSequence { set => spriteSequence = value; }
     Sprite[] currentSpriteArray;
     SpriteRenderer renderer;
     float spriteDisplayDuration;
     float spriteDisplayTimer = 0;
     int spriteIndex = 0;
     bool isTickReceived = false;
+
 
     void Awake()
     {

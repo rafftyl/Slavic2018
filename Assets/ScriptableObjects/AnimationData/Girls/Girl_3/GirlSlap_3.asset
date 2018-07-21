@@ -11,4 +11,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbdc6cea1a9a0e54ba66b6c928c18830, type: 3}
   m_Name: GirlSlap_3
   m_EditorClassIdentifier: 
-  spritesPerBeat: []
+  spritesPerBeat:
+  - sprites:
+    - {fileID: 21300000, guid: 735b7618c82717542967046ef50e823c, type: 3}
+  - sprites:
+    - {fileID: 21300000, guid: 057846fa058b20241933107d239da21b, type: 3}

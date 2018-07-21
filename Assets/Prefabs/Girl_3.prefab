@@ -66,7 +66,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1304365297769044}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.25, z: 0}
+  m_LocalPosition: {x: -2.37, y: 0.25, z: -3.06}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4614406861076040}
@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47aea7e632fbab9418413f89cdb660e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  materialSequence: {fileID: 0}
+  spriteSequence: {fileID: 0}
 --- !u!114 &114927773178711572
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -111,8 +111,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e2a575e6e812ed499e7ad03f83b0406, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WOO_LIMIT: 1
+  unimpressed: {fileID: 11400000, guid: 2903854ff9931b141a8bd8fa1a1b58cf, type: 2}
+  idle: {fileID: 11400000, guid: 6facfdc665966f0428d6074e02d24b0e, type: 2}
+  happy: {fileID: 11400000, guid: 34c3efaed4ac2ab49b16bc373af94d2e, type: 2}
+  excited: {fileID: 11400000, guid: aab6d08bc536b7044b08e69c266c61f1, type: 2}
+  slap: {fileID: 11400000, guid: 3cb8f15cf9bfcbe4290f50eb7c18e51e, type: 2}
+  WOO_TOP_LIMIT: 1
+  WOO_EXCITED_LIMIT: 0.8
+  WOO_HAPPY_LIMIT: 0.4
+  WOO_IDLE_LIMIT: 0
+  WOO_BOTTOM_LIMIT: -0.2
   WOO_DECAY: 0.1
+  SLAP_COOLDOWN: 1
+  REACTION_RANGE: 10
 --- !u!135 &135424701457979454
 SphereCollider:
   m_ObjectHideFlags: 1

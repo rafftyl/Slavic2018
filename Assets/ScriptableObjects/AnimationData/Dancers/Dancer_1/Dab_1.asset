@@ -11,4 +11,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbdc6cea1a9a0e54ba66b6c928c18830, type: 3}
   m_Name: Dab_1
   m_EditorClassIdentifier: 
-  spritesPerBeat: []
+  spritesPerBeat:
+  - sprites:
+    - {fileID: 21300000, guid: 7dc7cff6e466db14c89177702843c3e5, type: 3}
+  - sprites:
+    - {fileID: 21300000, guid: c78ea8afb913dd943b6d3f0eee4e3b9a, type: 3}

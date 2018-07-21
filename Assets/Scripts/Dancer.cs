@@ -42,6 +42,24 @@ public class Dancer : MonoBehaviour, IRhythmListener
     private int segments = 50;
     LineRenderer line;
 
+    bool isStanding = true;
+    public bool IsStanding
+    {
+        get => isStanding;
+        set
+        {
+            isStanding = value;
+            if(isStanding)
+            {
+                selectedDanceIndex = 0;
+                currentDance = selectableDances[selectedDanceIndex];
+                currentDance.StartDancing(gameObject);
+                SetDanceAnimation(currentDance.Name);
+                UpdateLinePoints(selectableDances[selectedDanceIndex].GetEffectRadius());
+            }            
+        }
+    }
+
 
     void Awake ()
     {
@@ -102,18 +120,7 @@ public class Dancer : MonoBehaviour, IRhythmListener
             lastLatePress = 0.0f;
         }
 
-        if (!IsStanding())
-        {
-            if (IsStanding())
-            {
-                selectedDanceIndex = 0;
-                currentDance = selectableDances[selectedDanceIndex];
-                currentDance.StartDancing(gameObject);
-                SetDanceAnimation(currentDance.Name);
-                UpdateLinePoints(selectableDances[selectedDanceIndex].GetEffectRadius());
-            }
-        }
-        else
+        if (IsStanding)
         {
             if (Input.GetButtonDown("NextDance_" + playerNumber))
             {
@@ -144,18 +151,14 @@ public class Dancer : MonoBehaviour, IRhythmListener
 
     public void FallOver()
     {
-        if (IsStanding())
+        if (IsStanding)
         {
             fallDance.StartDancing(gameObject);
             currentDance = fallDance;
             SetDanceAnimation(fallDance.Name);
+            isStanding = false;
             UpdateLinePoints(selectableDances[selectedDanceIndex].GetEffectRadius());
         }
-    }
-
-    public bool IsStanding()
-    {
-        return fallDance.CooldownRemaining == 0;
     }
 
     public void MetronomeTick(int measure, int beatNumber, float intensity, bool accent, float timeToNextTick)

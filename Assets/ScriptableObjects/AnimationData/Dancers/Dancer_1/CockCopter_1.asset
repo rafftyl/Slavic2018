@@ -14,9 +14,7 @@ MonoBehaviour:
   spritesPerBeat:
   - sprites:
     - {fileID: 21300000, guid: 0e47c8da41d49d944b6ce74eae06dcaa, type: 3}
-  - sprites:
     - {fileID: 21300000, guid: 37cfad01601829f46b7cded0fdd8e814, type: 3}
   - sprites:
     - {fileID: 21300000, guid: 633fa6e072b8f844d8a81543817f5436, type: 3}
-  - sprites:
     - {fileID: 21300000, guid: e56b1c51978ab164a9470930af523dff, type: 3}

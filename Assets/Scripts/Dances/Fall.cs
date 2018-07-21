@@ -30,7 +30,7 @@ public class Fall : Dance
 
     protected override void OnCooldownFinished(GameObject character)
     {
-        cooldownRemaining = 0; 
+        character.GetComponent<Dancer>().IsStanding = true;
     }
 
     public override float GetEffectRadius()

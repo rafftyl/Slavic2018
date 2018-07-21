@@ -141,8 +141,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scenesToLoadAdditively:
-  - Game_01
   - UI
+  - Game_01
   - Systems
 --- !u!4 &468837929
 Transform:

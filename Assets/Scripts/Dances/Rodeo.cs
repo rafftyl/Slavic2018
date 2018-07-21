@@ -8,7 +8,7 @@ public class Rodeo : Dance
 
     public override string Name => "Rodeo";
 
-    public Rodeo() : base(new HashSet<int> { 0 }, 2)
+    public Rodeo() : base(new HashSet<int> { 0, 1, 2, 3 }, 1)
     {
     }
 

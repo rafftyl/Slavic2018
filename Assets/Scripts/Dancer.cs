@@ -55,7 +55,7 @@ public class Dancer : MonoBehaviour, IRhythmListener
                 currentDance = selectableDances[selectedDanceIndex];
                 currentDance.StartDancing(gameObject);
                 SetDanceAnimation(currentDance.Name);
-                UpdateLinePoints(selectableDances[selectedDanceIndex].GetEffectRadius());
+                UpdateLinePoints();
             }            
         }
     }
@@ -67,7 +67,6 @@ public class Dancer : MonoBehaviour, IRhythmListener
         Assert.IsTrue(playerNumber > 0, "Too small player number");
         Assert.IsNotNull(GetComponent<Rigidbody>(), "Missing player Rigidbody");
         Assert.IsTrue(selectableDances.Length >= 1, "No selectable dances");
-
         currentDance = selectableDances[selectedDanceIndex];
     }
 
@@ -76,6 +75,7 @@ public class Dancer : MonoBehaviour, IRhythmListener
         line = gameObject.GetComponent<LineRenderer>();
         line.SetVertexCount(segments + 1);
         line.useWorldSpace = false;
+        UpdateLinePoints();
     }
 
     void Update ()
@@ -132,7 +132,7 @@ public class Dancer : MonoBehaviour, IRhythmListener
                 currentDance = selectableDances[selectedDanceIndex];
                 currentDance.StartDancing(gameObject);
                 SetDanceAnimation(currentDance.Name);
-                UpdateLinePoints(selectableDances[selectedDanceIndex].GetEffectRadius());
+                UpdateLinePoints();
             }
             else if (Input.GetButtonDown("PreviousDance_" + playerNumber))
             {
@@ -144,7 +144,7 @@ public class Dancer : MonoBehaviour, IRhythmListener
                 currentDance = selectableDances[selectedDanceIndex];
                 currentDance.StartDancing(gameObject);
                 SetDanceAnimation(currentDance.Name);
-                UpdateLinePoints(selectableDances[selectedDanceIndex].GetEffectRadius());
+                UpdateLinePoints();
             }
         }
     }
@@ -157,7 +157,7 @@ public class Dancer : MonoBehaviour, IRhythmListener
             currentDance = fallDance;
             SetDanceAnimation(fallDance.Name);
             isStanding = false;
-            UpdateLinePoints(selectableDances[selectedDanceIndex].GetEffectRadius());
+            UpdateLinePoints();
         }
     }
 
@@ -192,8 +192,9 @@ public class Dancer : MonoBehaviour, IRhythmListener
         spriteAnimation.SpriteSequence = animationPair.sequence;
     }
 
-    void UpdateLinePoints(float radius)
+    void UpdateLinePoints()
     {
+        float radius = currentDance.GetEffectRadius();
         if(radius <= 0.0f)
         {
             line.enabled = false;

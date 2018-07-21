@@ -1,16 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
+
 public class Dab : Dance
 {
     public const float THRUST_COOLDOWN = 0.5f;
-    public const float FORCE_IMPULSE = 75.0f;
+    public const float FORCE_IMPULSE = 200.0f;
 
     private float cooldown = 0.0f;
 
     public override string Name => "Dab";
 
-    public Dab() : base(new HashSet<int> { 1, 3 }, 2)
+    public Dab() : base(new HashSet<int> { 0, 1, 2, 3 }, 1)
     {
 
     }

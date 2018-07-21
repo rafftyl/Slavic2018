@@ -14,18 +14,18 @@ public class Girl : MonoBehaviour, IGameStateReceiver
     private RhythmSpriteAnimation rhythmSpriteAnimation;
 
     [SerializeField]
-    public float WOO_TOP_LIMIT = 1.0f;
+    public float WOO_TOP_LIMIT = 5.0f;
     [SerializeField]
-    public float WOO_EXCITED_LIMIT = 0.8f;
+    public float WOO_EXCITED_LIMIT = 4.0f;
     private const int WOO_EXCITED_INDEX = 3;
     [SerializeField]
-    public float WOO_HAPPY_LIMIT = 0.4f;
+    public float WOO_HAPPY_LIMIT = 2.0f;
     private const int WOO_HAPPY_INDEX = 2;
     [SerializeField]
     public float WOO_IDLE_LIMIT = 0.0f;
     private const int WOO_IDLE_INDEX = 1;
     [SerializeField]
-    public float WOO_BOTTOM_LIMIT = -0.2f;
+    public float WOO_BOTTOM_LIMIT = -2.0f;
     private const int WOO_UNIMPRESSED_INDEX = 0;
     [SerializeField]
     public float WOO_DECAY = 0.01f;

@@ -1,8 +1,11 @@
 using UnityEngine;
-using System.Collections.Generic;
+
 
 public class GameState : MonoBehaviour
 {
+    private int numberOfPlayers;
+    public int NumberOfPlayers { get => numberOfPlayers; }
+
     public void StartGame()
     {
         // TODO implement here

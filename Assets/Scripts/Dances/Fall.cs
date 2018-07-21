@@ -1,17 +1,22 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
 
 
 public class Fall : Dance
 {
     const float WOO_LOST_RANGE = 1.0f;
     const float WOO_LOST_VALUE = -0.4f;
-    const float DURATION_TIME = 2.0f;
-    private float timeLeft = 0.0f;
-    public float TimeLeft { get => timeLeft; }
+
+    public override string Name => "Fall";
+
+    public Fall() : base(new HashSet<int> { 0, 3 }, 2 )
+    {
+
+    }
 
     public override void StartDancing(GameObject character)
     {
-        timeLeft = DURATION_TIME;
+        base.StartDancing(character);
         Collider[] collidersInRange = Physics.OverlapSphere(character.transform.position, WOO_LOST_RANGE);
         foreach (var collider in collidersInRange)
         {
@@ -23,12 +28,9 @@ public class Fall : Dance
         }
     }
 
-    public override void Perform(GameObject character)
+    protected override void OnCooldownFinished(GameObject character)
     {
-        if(timeLeft > 0.0f)
-        {
-            timeLeft -= Time.deltaTime;
-        }
+        cooldownRemaining = 0; 
     }
 
     public override float GetEffectRadius()

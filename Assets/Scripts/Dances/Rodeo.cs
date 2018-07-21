@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.Assertions;
 
 
 public class Rodeo : Dance
@@ -12,7 +11,6 @@ public class Rodeo : Dance
 
     public override void Perform(GameObject character)
     {
-        Assert.IsNotNull(character, "Null character");
         character.GetComponent<Rigidbody>().velocity = character.GetComponent<CharacterManager>().MovementDirection * SPEED * Time.deltaTime;
     }
 }

@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbdc6cea1a9a0e54ba66b6c928c18830, type: 3}
+  m_Name: GirlExcited_1
+  m_EditorClassIdentifier: 
+  spritesPerBeat:
+  - sprites:
+    - {fileID: 21300000, guid: ae12c463e9853b744a22b4aee400c8f7, type: 3}
+  - sprites:
+    - {fileID: 21300000, guid: d10af80c23ebeab4cbdafefca7403328, type: 3}

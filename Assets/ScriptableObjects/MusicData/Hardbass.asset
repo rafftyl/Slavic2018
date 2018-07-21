@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf96f4c9b91420b49a8a8b61be21901b, type: 3}
+  m_Name: Hardbass
+  m_EditorClassIdentifier: 
+  rhythmChangeData:
+  - measure: 0
+    rhythmData: {fileID: 11400000, guid: 0d02aceed0017664fab5d7dbd2e70643, type: 2}
+  audioClip: {fileID: 8300000, guid: e705380b548fcac45af8e880fdf4dcb2, type: 3}

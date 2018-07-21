@@ -3,6 +3,6 @@
 
 public abstract class Dance
 {
-    public abstract void StartDancing();
+    public abstract void StartDancing(GameObject character);
     public abstract void Perform(GameObject character);
 }

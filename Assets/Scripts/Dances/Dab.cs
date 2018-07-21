@@ -8,7 +8,7 @@ public class Dab : Dance
 
     private float cooldown = 0.0f;
 
-    public override void StartDancing()
+    public override void StartDancing(GameObject character)
     {
         cooldown = THRUST_COOLDOWN;
     }
@@ -19,9 +19,9 @@ public class Dab : Dance
         {
             cooldown -= Time.deltaTime;
         }
-        else if (character.GetComponent<CharacterManager>().MovementDirection.magnitude > 0.0f)
+        else if (character.GetComponent<Dancer>().MovementDirection.magnitude > 0.0f)
         {
-            character.GetComponent<Rigidbody>().AddForce(character.GetComponent<CharacterManager>().MovementDirection * FORCE_IMPULSE);
+            character.GetComponent<Rigidbody>().AddForce(character.GetComponent<Dancer>().MovementDirection * FORCE_IMPULSE);
             cooldown = THRUST_COOLDOWN;
         }
     }

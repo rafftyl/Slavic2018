@@ -3,8 +3,8 @@
 
 public class Rodeo : Dance
 {
-    const float WOO_VALUE = 0.05f;
-    const float WOO_RANGE = 10.0f;
+    const float WOO_VALUE = 0.1f;
+    const float WOO_RANGE = 2.0f;
 
     public override void StartDancing(GameObject character)
     {
@@ -21,5 +21,10 @@ public class Rodeo : Dance
                 girl.Woo(character.GetComponent<Dancer>().PlayerNumber, WOO_VALUE * Time.deltaTime);
             }
         }
+    }
+
+    public override float GetEffectRadius()
+    {
+        return WOO_RANGE;
     }
 }

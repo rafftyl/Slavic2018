@@ -13,6 +13,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spritesPerBeat:
   - sprites:
-    - {fileID: 21300000, guid: 940e2faf9a88db24b8e2e5210ddd1713, type: 3}
+    - {fileID: 21300000, guid: 265e8a4d45b967e4fb4346f12b7a8a83, type: 3}
   - sprites:
-    - {fileID: 21300000, guid: 940e2faf9a88db24b8e2e5210ddd1713, type: 3}
+    - {fileID: 21300000, guid: 9fc54c33ecbe38742b4b4fc8ace429c3, type: 3}

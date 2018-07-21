@@ -12,6 +12,10 @@ public class Dancer : MonoBehaviour
     private int selectedDanceIndex = 0;
     private Vector3 movementDirection;
     public Vector3 MovementDirection { get => movementDirection; }
+    
+    private int segments = 50;
+    LineRenderer line;
+
 
     void Awake ()
     {
@@ -19,8 +23,15 @@ public class Dancer : MonoBehaviour
         Assert.IsNotNull(GetComponent<Rigidbody>(), "Missing player Rigidbody");
         Assert.IsTrue(selectableDances.Length >= 1, "No selectable dances");
     }
-	
-	void Update ()
+
+    void Start()
+    {
+        line = gameObject.GetComponent<LineRenderer>();
+        line.SetVertexCount(segments + 1);
+        line.useWorldSpace = false;
+    }
+
+    void Update ()
     {
         movementDirection.x = Input.GetAxisRaw("Horizontal_" + playerNumber);
         movementDirection.y = 0;
@@ -33,6 +44,7 @@ public class Dancer : MonoBehaviour
             {
                 selectedDanceIndex = 0;
                 selectableDances[selectedDanceIndex].StartDancing(gameObject);
+                UpdateLinePoints(selectableDances[selectedDanceIndex].GetEffectRadius());
             }
         }
         else
@@ -45,6 +57,7 @@ public class Dancer : MonoBehaviour
                     selectedDanceIndex = 0;
                 }
                 selectableDances[selectedDanceIndex].StartDancing(gameObject);
+                UpdateLinePoints(selectableDances[selectedDanceIndex].GetEffectRadius());
             }
             else if (Input.GetButtonDown("PreviousDance_" + playerNumber))
             {
@@ -54,6 +67,7 @@ public class Dancer : MonoBehaviour
                     selectedDanceIndex = selectableDances.Length - 1;
                 }
                 selectableDances[selectedDanceIndex].StartDancing(gameObject);
+                UpdateLinePoints(selectableDances[selectedDanceIndex].GetEffectRadius());
             }
             else
             {
@@ -67,11 +81,34 @@ public class Dancer : MonoBehaviour
         if(IsStanding())
         {
             fallDance.StartDancing(gameObject);
+            UpdateLinePoints(selectableDances[selectedDanceIndex].GetEffectRadius());
         }
     }
 
     public bool IsStanding()
     {
         return fallDance.TimeLeft <= 0.0f;
+    }
+
+    void UpdateLinePoints(float radius)
+    {
+        if(radius <= 0.0f)
+        {
+            line.enabled = false;
+        }
+        else
+        {
+            line.enabled = true;
+            float x;
+            float z;
+            float angle = 20f;
+            for (int i = 0; i < (segments + 1); i++)
+            {
+                x = Mathf.Sin(Mathf.Deg2Rad * angle) * radius;
+                z = Mathf.Cos(Mathf.Deg2Rad * angle) * radius;
+                line.SetPosition(i, new Vector3(x, 0, z));
+                angle += (360f / segments);
+            }
+        }
     }
 }

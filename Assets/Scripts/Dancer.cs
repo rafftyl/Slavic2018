@@ -88,7 +88,7 @@ public class Dancer : MonoBehaviour, IRhythmListener
         {
             if (Mathf.Abs(previousBeatTimestamp - beatPressedTimestamp) > beatTolerance)
             {
-                Debug.Log("Unsuccesful beat " + previousBeatNumber + " tick tmstp: " + previousBeatTimestamp + " beat pressed: " + beatPressedTimestamp + " tolerance: " + beatTolerance);
+                //Debug.Log("Unsuccesful beat " + previousBeatNumber + " tick tmstp: " + previousBeatTimestamp + " beat pressed: " + beatPressedTimestamp + " tolerance: " + beatTolerance);
                 currentDance.Fail(gameObject);
                 lastLateBeat = 0.0f;
             }
@@ -96,7 +96,7 @@ public class Dancer : MonoBehaviour, IRhythmListener
 
         if(lastLatePress > 0.0f && Mathf.Abs(Time.time - lastLatePress) > beatTolerance)
         {
-            Debug.Log("Unsuccesful beat " + previousBeatNumber + " tick tmstp: " + previousBeatTimestamp + " beat pressed: " + beatPressedTimestamp + " tolerance: " + beatTolerance);
+            //Debug.Log("Unsuccesful beat " + previousBeatNumber + " tick tmstp: " + previousBeatTimestamp + " beat pressed: " + beatPressedTimestamp + " tolerance: " + beatTolerance);
             currentDance.Fail(gameObject);
             lastLateBeat = 0.0f;
             lastLatePress = 0.0f;

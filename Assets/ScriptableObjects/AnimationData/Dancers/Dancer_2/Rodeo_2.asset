@@ -11,4 +11,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbdc6cea1a9a0e54ba66b6c928c18830, type: 3}
   m_Name: Rodeo_2
   m_EditorClassIdentifier: 
-  spritesPerBeat: []
+  spritesPerBeat:
+  - sprites:
+    - {fileID: 21300000, guid: a2b87475bedbaa7498103c6818080e85, type: 3}
+  - sprites:
+    - {fileID: 21300000, guid: e057a232a533ea9409f54bf51043d6ef, type: 3}

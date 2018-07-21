@@ -11,4 +11,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbdc6cea1a9a0e54ba66b6c928c18830, type: 3}
   m_Name: HipSweep_3
   m_EditorClassIdentifier: 
-  spritesPerBeat: []
+  spritesPerBeat:
+  - sprites:
+    - {fileID: 21300000, guid: a9c28e2dc3d2afc4eab8e8fab2bcea8b, type: 3}
+  - sprites:
+    - {fileID: 21300000, guid: 2f0b3f00e7f7f9e448742d5cd3a8d84f, type: 3}

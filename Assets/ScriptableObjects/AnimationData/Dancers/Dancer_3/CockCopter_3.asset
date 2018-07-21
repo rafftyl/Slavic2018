@@ -11,4 +11,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbdc6cea1a9a0e54ba66b6c928c18830, type: 3}
   m_Name: CockCopter_3
   m_EditorClassIdentifier: 
-  spritesPerBeat: []
+  spritesPerBeat:
+  - sprites:
+    - {fileID: 21300000, guid: 73d364c8e772f8241b70a3c766f8fe5c, type: 3}
+  - sprites:
+    - {fileID: 21300000, guid: 55a4f36f0c3f5ef4f926786a1e69b57d, type: 3}
+  - sprites:
+    - {fileID: 21300000, guid: 198b278c6a26e6d4ca66bb90eabf1227, type: 3}
+  - sprites:
+    - {fileID: 21300000, guid: e1105e4076831cc4fb834cf80519e926, type: 3}

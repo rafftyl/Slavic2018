@@ -3,14 +3,23 @@
 
 public class Rodeo : Dance
 {
-    const float SPEED = 50.0f;
+    const float WOO_VALUE = 0.05f;
+    const float WOO_RANGE = 10.0f;
 
-    public override void StartDancing()
+    public override void StartDancing(GameObject character)
     {
     }
 
     public override void Perform(GameObject character)
     {
-        character.GetComponent<Rigidbody>().velocity = character.GetComponent<CharacterManager>().MovementDirection * SPEED * Time.deltaTime;
+        Collider[] collidersInRange = Physics.OverlapSphere(character.transform.position, WOO_RANGE);
+        foreach (var collider in collidersInRange)
+        {
+            Girl girl = collider.gameObject.GetComponent<Girl>();
+            if (girl != null)
+            {
+                girl.Woo(character.GetComponent<Dancer>().PlayerNumber, WOO_VALUE * Time.deltaTime);
+            }
+        }
     }
 }

@@ -2,7 +2,7 @@
 using UnityEngine.Assertions;
 
 
-public class CharacterManager : MonoBehaviour
+public class Dancer : MonoBehaviour
 {
     [SerializeField]
     private int playerNumber = 1;
@@ -26,13 +26,13 @@ public class CharacterManager : MonoBehaviour
         movementDirection.y = 0;
         movementDirection.z = Input.GetAxisRaw("Vertical_" + playerNumber);
         movementDirection = movementDirection.normalized;
-        if (fallDance.TimeLeft > 0.0f)
+        if (!IsStanding())
         {
             fallDance.Perform(gameObject);
             if (fallDance.TimeLeft <= 0.0f)
             {
                 selectedDanceIndex = 0;
-                selectableDances[selectedDanceIndex].StartDancing();
+                selectableDances[selectedDanceIndex].StartDancing(gameObject);
             }
         }
         else
@@ -44,7 +44,7 @@ public class CharacterManager : MonoBehaviour
                 {
                     selectedDanceIndex = 0;
                 }
-                selectableDances[selectedDanceIndex].StartDancing();
+                selectableDances[selectedDanceIndex].StartDancing(gameObject);
             }
             else if (Input.GetButtonDown("PreviousDance_" + playerNumber))
             {
@@ -53,7 +53,7 @@ public class CharacterManager : MonoBehaviour
                 {
                     selectedDanceIndex = selectableDances.Length - 1;
                 }
-                selectableDances[selectedDanceIndex].StartDancing();
+                selectableDances[selectedDanceIndex].StartDancing(gameObject);
             }
             else
             {
@@ -64,6 +64,14 @@ public class CharacterManager : MonoBehaviour
 
     public void FallOver()
     {
-        fallDance.StartDancing();
+        if(IsStanding())
+        {
+            fallDance.StartDancing(gameObject);
+        }
+    }
+
+    public bool IsStanding()
+    {
+        return fallDance.TimeLeft <= 0.0f;
     }
 }

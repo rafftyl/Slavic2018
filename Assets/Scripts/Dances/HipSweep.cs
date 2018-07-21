@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-
+using System.Collections.Generic;
 
 public class HipSweep : Dance
 {
@@ -8,18 +8,20 @@ public class HipSweep : Dance
 
     private float cooldown = 0.0f;
 
+    public override string Name => "HipSweep";
+
+    public HipSweep() : base(new HashSet<int> { 0 , 2 }, 2)
+    {
+    }
+
     public override void StartDancing(GameObject character)
     {
         cooldown = THRUST_COOLDOWN;
     }
 
-    public override void Perform(GameObject character)
+    protected override void OnCooldownFinished(GameObject character)
     {
-        if(cooldown > 0.0f)
-        {
-            cooldown -= Time.deltaTime;
-        }
-        else if (character.GetComponent<Dancer>().MovementDirection.magnitude > 0.0f)
+        if (character.GetComponent<Dancer>().MovementDirection.magnitude > 0.0f)
         {
             character.GetComponent<Rigidbody>().AddForce(character.GetComponent<Dancer>().MovementDirection * FORCE_IMPULSE);
             cooldown = THRUST_COOLDOWN;

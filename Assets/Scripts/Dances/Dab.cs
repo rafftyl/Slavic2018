@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-
+using System.Collections.Generic;
 
 public class Dab : Dance
 {
@@ -8,18 +8,22 @@ public class Dab : Dance
 
     private float cooldown = 0.0f;
 
-    public override void StartDancing(GameObject character)
+    public override string Name => "Dab";
+
+    public Dab() : base(new HashSet<int> { 1, 3 }, 2)
     {
-        cooldown = THRUST_COOLDOWN;
+
     }
 
-    public override void Perform(GameObject character)
+    public override void StartDancing(GameObject character)
     {
-        if (cooldown > 0.0f)
-        {
-            cooldown -= Time.deltaTime;
-        }
-        else if (character.GetComponent<Dancer>().MovementDirection.magnitude > 0.0f)
+        base.StartDancing(character);
+        cooldown = THRUST_COOLDOWN;
+    }    
+
+    protected override void OnCooldownFinished(GameObject character)
+    {
+        if (character.GetComponent<Dancer>().MovementDirection.magnitude > 0.0f)
         {
             character.GetComponent<Rigidbody>().AddForce(character.GetComponent<Dancer>().MovementDirection * FORCE_IMPULSE);
             cooldown = THRUST_COOLDOWN;

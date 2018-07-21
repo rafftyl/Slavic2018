@@ -1,16 +1,18 @@
 ﻿using UnityEngine;
-
+using System.Collections.Generic;
 
 public class Rodeo : Dance
 {
     const float WOO_VALUE = 0.05f;
     const float WOO_RANGE = 10.0f;
 
-    public override void StartDancing(GameObject character)
+    public override string Name => "Rodeo";
+
+    public Rodeo() : base(new HashSet<int> { 0 }, 2)
     {
     }
 
-    public override void Perform(GameObject character)
+    protected override void OnCooldownFinished(GameObject character)
     {
         Collider[] collidersInRange = Physics.OverlapSphere(character.transform.position, WOO_RANGE);
         foreach (var collider in collidersInRange)

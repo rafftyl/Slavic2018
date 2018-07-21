@@ -22,6 +22,8 @@ public class GameState : MonoBehaviour
     List<IGameStopListener> gameStopListeners = new List<IGameStopListener>();
     List<IGamePauseListener> gamePauseListeners = new List<IGamePauseListener>();
 
+    Dictionary<int, Dancer> dancers = new Dictionary<int, Dancer>();
+
     void Awake()
     {
         currentPlayerScore = new Dictionary<int, float>();
@@ -137,5 +139,15 @@ public class GameState : MonoBehaviour
     {
         Assert.IsTrue(playerNumber > 0 && playerNumber <= MAX_PLAYERS, "Invalid player number");
         return currentPlayerScore[playerNumber];
+    }
+
+    public void RegisterDancer(Dancer dancer, int playerIndex)
+    {
+        dancers.Add(playerIndex, dancer);
+    }
+
+    public Dancer GetDancer(int playerIndex)
+    {
+        return dancers[playerIndex];
     }
 }

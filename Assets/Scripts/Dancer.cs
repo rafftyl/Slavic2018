@@ -9,7 +9,7 @@ class DanceAnimationPair
     public RhythmSpriteSequence sequence;
 }
 
-public class Dancer : MonoBehaviour, IRhythmListener
+public class Dancer : MonoBehaviour, IRhythmListener, IGameStateReceiver
 {
     const float BEAT_TOLERANCE = 1.0f;
 
@@ -60,6 +60,7 @@ public class Dancer : MonoBehaviour, IRhythmListener
         }
     }
 
+    public GameState GameState { set => value.RegisterDancer(this, playerNumber); }
 
     void Awake ()
     {

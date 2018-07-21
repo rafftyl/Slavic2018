@@ -11,26 +11,26 @@ public class DamageComponent : MonoBehaviour
         timeLeft = LIFE_TIME;
     }
 
-    private void Update()
+    void OnCollisionEnter(Collision collision)
     {
-        Collider[] collidersInRange = Physics.OverlapSphere(gameObject.transform.position, 0.5f);
-        foreach (var collider in collidersInRange)
+        Girl girl = collision.other.GetComponent<Girl>();
+        if (girl != null)
         {
-            Girl girl = collider.gameObject.GetComponent<Girl>();
-            if (girl != null)
+            girl.Retaliation(playerNumber);
+            gameObject.GetComponent<Dancer>().FallOver();
+        }
+        else
+        {
+            Dancer dancer = collision.other.GetComponent<Dancer>();
+            if (dancer != null && dancer.PlayerNumber != playerNumber)
             {
-                girl.Retaliation(playerNumber);
-                gameObject.GetComponent<Dancer>().FallOver();
-            }
-            else
-            {
-                Dancer dancer = collider.gameObject.GetComponent<Dancer>();
-                if(dancer != null && dancer.PlayerNumber != playerNumber)
-                {
-                    dancer.FallOver();
-                }
+                dancer.FallOver();
             }
         }
+    }
+
+    private void Update()
+    {
         timeLeft -= Time.deltaTime;
         if(timeLeft <= 0.0f)
         {

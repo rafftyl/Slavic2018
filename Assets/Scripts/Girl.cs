@@ -3,8 +3,9 @@ using UnityEngine;
 using UnityEngine.Assertions;
 
 
-public class Girl : MonoBehaviour
+public class Girl : MonoBehaviour, IGameStateReceiver
 {
+    private GameState gameState;
     public RhythmSpriteSequence unimpressed;
     public RhythmSpriteSequence idle;
     public RhythmSpriteSequence happy;
@@ -32,6 +33,8 @@ public class Girl : MonoBehaviour
     public float SLAP_COOLDOWN = 1.0f;
     [SerializeField]
     public float REACTION_RANGE = 10.0f;
+    [SerializeField]
+    public float SCORE_RATE = 1.0f;
 
     public const int NOT_TAKEN = -1;
     private int takenBy = NOT_TAKEN;
@@ -64,7 +67,7 @@ public class Girl : MonoBehaviour
             slapCooldown -= Time.deltaTime;
         }
         //TODO: gamestate receiver
-        for (int i = 1; i < 10; ++i)
+        for (int i = 1; i < GameState.MAX_PLAYERS; ++i)
         {
             if (currentWooFactors.ContainsKey(i) && i != takenBy)
             {
@@ -85,6 +88,10 @@ public class Girl : MonoBehaviour
                     }
                 }
             }
+        }
+        if(takenBy != NOT_TAKEN)
+        {
+            gameState.AddScoreForPlayer(takenBy, SCORE_RATE * Time.deltaTime);
         }
         DetermineAnimation();
     }
@@ -193,4 +200,6 @@ public class Girl : MonoBehaviour
             }
         }
     }
+
+    public GameState GameState { set => gameState = value; }
 }

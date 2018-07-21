@@ -3,8 +3,8 @@
 
 public class Fall : Dance
 {
-    const float WOO_LOST_RANGE = 20.0f;
-    const float WOO_LOST_VALUE = -0.2f;
+    const float WOO_LOST_RANGE = 1.0f;
+    const float WOO_LOST_VALUE = -0.4f;
     const float DURATION_TIME = 2.0f;
     private float timeLeft = 0.0f;
     public float TimeLeft { get => timeLeft; }

@@ -3,8 +3,8 @@
 
 public class Rodeo : Dance
 {
-    const float WOO_VALUE = 0.1f;
-    const float WOO_RANGE = 2.0f;
+    const float WOO_VALUE = 0.3f;
+    const float WOO_RANGE = 0.5f;
 
     public override void StartDancing(GameObject character)
     {

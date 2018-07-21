@@ -5,6 +5,12 @@ using System.Collections.Generic;
 
 public class GameState : MonoBehaviour
 {
+    public const int MAX_PLAYERS = 2;
+    private const float WIN_SCORE = 10.0f;
+    private int winnerNumber = -1;
+    public int WinnerNumber { get => winnerNumber; }
+    Dictionary<int, float> currentPlayerScore;
+
     [SerializeField]
     RhythmManager rhythmManager;
 
@@ -17,6 +23,12 @@ public class GameState : MonoBehaviour
 
     void Awake()
     {
+        currentPlayerScore = new Dictionary<int, float>();
+        for(int i = 1; i <= MAX_PLAYERS; ++i)
+        {
+            currentPlayerScore.Add(i, 0.0f);
+        }
+
         Assert.IsNotNull(rhythmManager);
         Assert.IsNotNull(audioManager);
 
@@ -106,4 +118,23 @@ public class GameState : MonoBehaviour
         StartGame();
     }
 
+    public void AddScoreForPlayer(int playerNumber, float ammount)
+    {
+        Assert.IsTrue(playerNumber > 0 && playerNumber <= MAX_PLAYERS, "Invalid player number");
+        Assert.IsTrue(ammount > 0.0f, "Invalid ammount");
+        if(winnerNumber <= -1)
+        {
+            currentPlayerScore[playerNumber] += ammount;
+            if (currentPlayerScore[playerNumber] >= WIN_SCORE)
+            {
+                winnerNumber = playerNumber;
+            }
+        }
+    }
+
+    public float GetPlayerScore(int playerNumber)
+    {
+        Assert.IsTrue(playerNumber > 0 && playerNumber <= MAX_PLAYERS, "Invalid player number");
+        return currentPlayerScore[playerNumber];
+    }
 }

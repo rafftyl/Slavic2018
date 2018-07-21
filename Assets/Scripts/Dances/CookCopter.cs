@@ -5,7 +5,7 @@ public class CookCopter : Dance
 {
     const float SPIN_TIME = 2.0f;
     const float WOO_VALUE = 0.5f;
-    const float WOO_RANGE = 0.6f;
+    const float WOO_RANGE = 0.7f;
     private float currentSpin = 0.0f;
 
     public override void StartDancing(GameObject character)

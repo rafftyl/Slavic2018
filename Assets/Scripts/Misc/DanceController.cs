@@ -13,7 +13,7 @@ public class DanceController : AnimationModifier , IGameStateReceiver, IRhythmLi
 
     public float AttractionFalloff => throw new System.NotImplementedException();
 
-    public void MetronomeTick(int value, float intensity, bool accent)
+    public void MetronomeTick(int measure, int beatNumber, float intensity, bool accent, float timeToNextTick)
     {
         throw new System.NotImplementedException();
     }

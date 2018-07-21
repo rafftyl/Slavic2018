@@ -9,6 +9,7 @@ public class RhythmDataChangeMarker
     public RhythmData rhythmData;
 }
 
+[CreateAssetMenu(fileName = "AudioTrack", menuName = "Rhythm/AudioTrack")]
 public class AudioTrack : ScriptableObject
 {
     [SerializeField]
@@ -16,6 +17,7 @@ public class AudioTrack : ScriptableObject
 
     [SerializeField]
     AudioClip audioClip;
+    public AudioClip AudioClip { get => audioClip; }
 
     public RhythmData GetRhythmDataForMeasure(int measure)
     {

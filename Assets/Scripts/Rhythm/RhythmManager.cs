@@ -7,12 +7,13 @@ public class RhythmManager : MonoBehaviour, IAudioManagerReceiver, IGameStartLis
     const int SECONDS_IN_MINUTE = 60;
 
     [SerializeField]
-    AudioTrack audioTrack;
+    AudioTrack audioTrack; //TODO: enable multiple tracks
     int currentMeasure = 0;
     int currentBeat = 0;
-    int currentTimeSignature = 4;
-    float currentBeatDuration = 0;
     float currentBeatTime = 0;
+
+    RhythmData currentRhythmData;
+    List<IRhythmListener> rhythmListeners = new List<IRhythmListener>();
 
     AudioManager manager;
     public AudioManager AudioManager
@@ -33,10 +34,7 @@ public class RhythmManager : MonoBehaviour, IAudioManagerReceiver, IGameStartLis
 
     public void GameStarted()
     {
-        Assert.IsNotNull(audioTrack);
-        RhythmData rhythmData = audioTrack.GetRhythmDataForMeasure(currentMeasure);
-        currentTimeSignature = rhythmData.TimeSignature;
-        currentBeatDuration = SECONDS_IN_MINUTE / rhythmData.BeatsPerMinute;
+       
     }
 
     public void GameStopped()
@@ -44,9 +42,49 @@ public class RhythmManager : MonoBehaviour, IAudioManagerReceiver, IGameStartLis
         throw new System.NotImplementedException();
     }
 
-    void Update()
+    public void RegisterRhythmListener(IRhythmListener rhythmListener)
     {
+        rhythmListeners.Add(rhythmListener);
+    }
 
+    int warmupUpdates = 50;
+    int currentUpdate = 0;
+    void FixedUpdate()
+    {        
+        Assert.IsNotNull(AudioManager);
+        ++currentUpdate;
+        if (currentUpdate > warmupUpdates)
+        {
+            if (AudioManager.CurrentClip == null)
+            {
+                AudioManager.PlayMusic(audioTrack.AudioClip);
+            }
+            else
+            {
+                Assert.IsNotNull(audioTrack);
+                currentRhythmData = audioTrack.GetRhythmDataForMeasure(currentMeasure);
+                float currentTimeSignature = currentRhythmData.TimeSignature;
+                float currentBeatDuration = SECONDS_IN_MINUTE / currentRhythmData.BeatsPerMinute;
+
+                currentBeatTime += Time.deltaTime;
+                if (currentBeatTime > currentBeatDuration)
+                {
+                    currentBeatTime = 0;
+                    ++currentBeat;
+                    if (currentBeat == currentTimeSignature)
+                    {
+                        ++currentMeasure;
+                        currentBeat = 0;
+                    }
+
+                    foreach (var listener in rhythmListeners)
+                    {
+                        listener.MetronomeTick(currentMeasure, currentBeat, currentRhythmData.Intensity, currentRhythmData.IsAccentOnBeat(currentBeat), currentBeatDuration);
+                    }
+                }
+            }
+        }
+        
     }
     
 }

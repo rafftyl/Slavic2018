@@ -2,9 +2,13 @@ using UnityEngine;
 using UnityEngine.Assertions;
 using System.Collections.Generic;
 
+[CreateAssetMenu(fileName = "RhythmData", menuName = "Rhythm/RhythmData")]
 public class RhythmData : ScriptableObject
 {
+    [SerializeField]
     float beatsPerMinute = 150;
+
+    [SerializeField]
     float intensity = 0.5f;
 
     [SerializeField]

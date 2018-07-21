@@ -1,4 +1,4 @@
 public interface IRhythmListener
 {
-    void MetronomeTick(int value, float intensity, bool accent);
+    void MetronomeTick(int measure, int beatNumber, float intensity, bool accent, float timeToNextTick);
 }

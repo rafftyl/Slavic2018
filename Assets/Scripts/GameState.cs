@@ -18,36 +18,48 @@ public class GameState : MonoBehaviour
     void Awake()
     {
         Assert.IsNotNull(rhythmManager);
-        List<GameObject> rootObjects = new List<GameObject>();
-        Scene scene = SceneManager.GetActiveScene();
-        scene.GetRootGameObjects(rootObjects);
+        Assert.IsNotNull(audioManager);
 
-        //TODO: generalize dependency injection
-        foreach (var obj in rootObjects)
+        for(int sceneIndex = 0; sceneIndex < SceneManager.sceneCount; ++sceneIndex)
         {
-            var rhythmListeners = obj.GetComponentsInChildren<IRhythmListener>();
-            foreach (var listener in rhythmListeners)
+            List<GameObject> rootObjects = new List<GameObject>();
+            Scene scene = SceneManager.GetSceneAt(sceneIndex);
+            scene.GetRootGameObjects(rootObjects);
+            InjectDependencies(rootObjects);          
+        }        
+    }
+
+    private void InjectDependencies(List<GameObject> objects)
+    {
+        //TODO: generalize dependency injection
+        foreach (var obj in objects)
+        {
+            if (obj.activeSelf)
             {
-                rhythmManager.RegisterRhythmListener(listener);
+                var rhythmListeners = obj.GetComponentsInChildren<IRhythmListener>();
+                foreach (var listener in rhythmListeners)
+                {
+                    rhythmManager.RegisterRhythmListener(listener);
+                }
+
+                gameStartListeners.AddRange(obj.GetComponentsInChildren<IGameStartListener>());
+                gameStopListeners.AddRange(obj.GetComponentsInChildren<IGameStopListener>());
+                gamePauseListeners.AddRange(obj.GetComponentsInChildren<IGamePauseListener>());
+
+                var gameStateReceivers = obj.GetComponentsInChildren<IGameStateReceiver>();
+                foreach (var receiver in gameStateReceivers)
+                {
+                    receiver.GameState = this;
+                }
+
+                var audioReceivers = obj.GetComponentsInChildren<IAudioManagerReceiver>();
+                foreach (var receiver in audioReceivers)
+                {
+                    receiver.AudioManager = audioManager;
+                }
+
+                //TODO: inject remaining dependencies
             }
-
-            gameStartListeners.AddRange(obj.GetComponentsInChildren<IGameStartListener>());
-            gameStopListeners.AddRange(obj.GetComponentsInChildren<IGameStopListener>());
-            gamePauseListeners.AddRange(obj.GetComponentsInChildren<IGamePauseListener>());
-
-            var gameStateReceivers = obj.GetComponentsInChildren<IGameStateReceiver>();
-            foreach (var receiver in gameStateReceivers)
-            {
-                receiver.GameState = this;
-            }
-
-            var audioReceivers = obj.GetComponentsInChildren<IAudioManagerReceiver>();
-            foreach (var receiver in audioReceivers)
-            {
-                receiver.AudioManager = audioManager;
-            }
-
-            //TODO: inject remaining dependencies
         }
     }
 

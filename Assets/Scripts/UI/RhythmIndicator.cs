@@ -23,6 +23,19 @@ public class RhythmIndicator : MonoBehaviour, IGameStateReceiver, IGameStartList
     public void GameStarted()
     {
         dancer = gameState.GetDancer(playerIndex);
+        dancer.onDanceResult += Dancer_onDanceResult;
+    }
+
+    private void Dancer_onDanceResult(bool success)
+    {
+        if(!success)
+        {
+            StartCoroutine(ColorChange(Color.red, duration));
+        }
+        else
+        {
+            StartCoroutine(ColorChange(Color.green, duration));
+        }
     }
 
     bool pulse = false;
@@ -55,5 +68,14 @@ public class RhythmIndicator : MonoBehaviour, IGameStateReceiver, IGameStartList
                 pulse = false;
             }
         }
+    }
+
+    IEnumerator ColorChange(Color color, float dur)
+    {
+        var image = center.GetComponent<Image>();
+        Color prev = image.color;
+        image.color = color;
+        yield return new WaitForSeconds(dur);
+        image.color = prev;
     }
 }

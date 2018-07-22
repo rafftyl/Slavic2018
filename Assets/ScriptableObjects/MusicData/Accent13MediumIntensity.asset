@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Name: Accent13MediumIntensity
   m_EditorClassIdentifier: 
   beatsPerMinute: 150
-  intensity: 0.5
-  measureAccentDistribution: 01000100
+  intensity: 0.2
+  measureAccentDistribution: 01010101

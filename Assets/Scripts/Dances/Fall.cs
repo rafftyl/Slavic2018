@@ -9,7 +9,7 @@ public class Fall : Dance
 
     public override string Name => "Fall";
 
-    public Fall() : base(new HashSet<int> { 0, 1, 2, 3 }, 1)
+    public Fall() : base(new HashSet<int> { 0, 1, 2, 3 }, 4)
     {
 
     }

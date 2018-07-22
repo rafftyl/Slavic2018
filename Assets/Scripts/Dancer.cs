@@ -95,7 +95,6 @@ public class Dancer : MonoBehaviour, IRhythmListener, IGameStateReceiver
             }
             else
             {
-                Debug.Log("Failure");
                 CurrentDance.Fail(gameObject);
             }
         }

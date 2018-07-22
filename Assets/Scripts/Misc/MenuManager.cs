@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Assertions;
 using UnityEngine.SceneManagement;
 
 
@@ -9,16 +10,26 @@ public class MenuManager : MonoBehaviour
     public GameObject help;
     public GameObject howToPlay;
     public GameObject dances;
-    public GameObject controlls;
+    public GameObject controls;
     public GameObject credits;
+    private GameObject[] menus;
 
     public void Start()
     {
-        mainMenu.active = true;
-        help.active = false;
-        howToPlay.active = false;
-        controlls.active = false;
-        credits.active = false;
+        Assert.IsNotNull(mainMenu, "Missing main menu");
+        Assert.IsNotNull(help, "Missing help");
+        Assert.IsNotNull(howToPlay, "Missing how to play");
+        Assert.IsNotNull(dances, "Missing dances");
+        Assert.IsNotNull(controls, "Missing controls");
+        Assert.IsNotNull(credits, "Missing credits");
+        menus = new GameObject[6];
+        menus[0] = mainMenu;
+        menus[1] = help;
+        menus[2] = howToPlay;
+        menus[3] = dances;
+        menus[4] = controls;
+        menus[5] = credits;
+        ShowMainMenu();
     }
 
     public void StartGame()
@@ -26,10 +37,40 @@ public class MenuManager : MonoBehaviour
         SceneManager.LoadScene("Main", LoadSceneMode.Single);
     }
 
-    public void HowToPlay()
+    public void ShowMainMenu()
     {
-        mainMenu.active = false;
+        ClearMenus();
+        mainMenu.active = true;
+    }
+
+    public void ShowHelpMenu()
+    {
+        ClearMenus();
+        help.active = true;
+    }
+
+    public void ShowHowToPlayMenu()
+    {
+        ClearMenus();
         howToPlay.active = true;
+    }
+
+    public void ShowDancesMenu()
+    {
+        ClearMenus();
+        dances.active = true;
+    }
+
+    public void ShowControlsMenu()
+    {
+        ClearMenus();
+        controls.active = true;
+    }
+
+    public void ShowCreditsMenu()
+    {
+        ClearMenus();
+        credits.active = true;
     }
 
     public void Exit()
@@ -37,9 +78,11 @@ public class MenuManager : MonoBehaviour
         Application.Quit();
     }
 
-    public void Back()
+    private void ClearMenus()
     {
-        mainMenu.active = true;
-        howToPlay.active = false;
+        for(int i = 0; i < menus.Length; ++i)
+        {
+            menus[i].active = false;
+        }
     }
 }

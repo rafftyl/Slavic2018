@@ -6,12 +6,19 @@ using UnityEngine.SceneManagement;
 public class MenuManager : MonoBehaviour
 {
     public GameObject mainMenu;
+    public GameObject help;
     public GameObject howToPlay;
+    public GameObject dances;
+    public GameObject controlls;
+    public GameObject credits;
 
     public void Start()
     {
         mainMenu.active = true;
+        help.active = false;
         howToPlay.active = false;
+        controlls.active = false;
+        credits.active = false;
     }
 
     public void StartGame()

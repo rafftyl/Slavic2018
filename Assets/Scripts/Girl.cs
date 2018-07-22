@@ -34,7 +34,7 @@ public class Girl : MonoBehaviour, IGameStateReceiver
     [SerializeField]
     public float REACTION_RANGE = 3.0f;
     [SerializeField]
-    public float SCORE_RATE = 1.0f;
+    public float SCORE_RATE = 0.3f;
     [SerializeField]
     public float VELOCITY = 1.0f;
     [SerializeField]
@@ -71,8 +71,8 @@ public class Girl : MonoBehaviour, IGameStateReceiver
         {
             slapCooldown -= Time.deltaTime;
         }
-        //TODO: gamestate receiver
-        for (int i = 1; i < GameState.MAX_PLAYERS; ++i)
+        
+        for (int i = 1; i <= GameState.MAX_PLAYERS; ++i)
         {
             if (currentWooFactors.ContainsKey(i) && i != takenBy)
             {

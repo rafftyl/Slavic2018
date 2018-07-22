@@ -24,12 +24,12 @@ public class RhythmManager : MonoBehaviour, IAudioManagerReceiver, IGameStartLis
 
     public void GamePaused()
     {
-        throw new System.NotImplementedException();
+        
     }
 
     public void GameResumed()
     {
-        throw new System.NotImplementedException();
+        
     }
 
     public void GameStarted()
@@ -39,7 +39,7 @@ public class RhythmManager : MonoBehaviour, IAudioManagerReceiver, IGameStartLis
 
     public void GameStopped()
     {
-        throw new System.NotImplementedException();
+        
     }
 
     public void RegisterRhythmListener(IRhythmListener rhythmListener)

@@ -44,6 +44,14 @@ public class GameState : MonoBehaviour
         }        
     }
 
+    private void Update()
+    {
+        if(Input.GetButtonDown("Cancel"))
+        {
+            SceneManager.LoadScene("MainMenu");
+        }
+    }
+
     private void InjectDependencies(List<GameObject> objects)
     {
         //TODO: generalize dependency injection

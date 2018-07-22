@@ -30,14 +30,8 @@ public class Dancer : MonoBehaviour, IRhythmListener, IGameStateReceiver
     private int selectedDanceIndex = 0;
     private Vector3 movementDirection;
     public Vector3 MovementDirection { get => movementDirection; }
-    
-    float previousBeatTimestamp;
-    float beatPressedTimestamp;
-    float beatDuration = 0;
+
     float beatTolerance = 0;
-    float lastLateBeat = 0;
-    float lastLatePress = 0;
-    int previousBeatNumber = 0;
     
     private int segments = 50;
     LineRenderer line;
@@ -97,8 +91,8 @@ public class Dancer : MonoBehaviour, IRhythmListener, IGameStateReceiver
         {
             if (Mathf.Abs(timeToAccent) < beatTolerance || Mathf.Abs(timeToNextAccent) < beatTolerance)
             {
-                lastLatePress = 0.0f;
-                CurrentDance.Perform(gameObject);            }
+                CurrentDance.Perform(gameObject);
+            }
             else
             {
                 Debug.Log("Failure");

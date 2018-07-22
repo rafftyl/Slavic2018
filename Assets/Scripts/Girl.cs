@@ -35,6 +35,10 @@ public class Girl : MonoBehaviour, IGameStateReceiver
     public float REACTION_RANGE = 3.0f;
     [SerializeField]
     public float SCORE_RATE = 1.0f;
+    [SerializeField]
+    public float VELOCITY = 1.0f;
+    [SerializeField]
+    public float DISTANCE_TOLERANCE = 1.0f;
 
     public const int NOT_TAKEN = -1;
     private int takenBy = NOT_TAKEN;
@@ -43,6 +47,7 @@ public class Girl : MonoBehaviour, IGameStateReceiver
     Dictionary<int, float> currentWooFactors = new Dictionary<int, float>();
     KeyValuePair<float, RhythmSpriteSequence>[] animationChangeBorders;
     private int currentAnimationIndex = SLAP_ANIMATION_INDEX;
+
 
     private void Awake()
     {
@@ -92,14 +97,23 @@ public class Girl : MonoBehaviour, IGameStateReceiver
         if(takenBy != NOT_TAKEN)
         {
             gameState.AddScoreForPlayer(takenBy, SCORE_RATE * Time.deltaTime);
-            Collider[] collidersInRange = Physics.OverlapSphere(transform.position, 20);
+            Collider[] collidersInRange = Physics.OverlapSphere(transform.position, 1000.0f);
+            Dancer dancer = null;
             foreach (var collider in collidersInRange)
             {
-                Dancer dancer = collider.gameObject.GetComponent<Dancer>();
+                dancer = collider.gameObject.GetComponent<Dancer>();
                 if (dancer != null && dancer.PlayerNumber == takenBy)
                 {
-                    //GetComponent<Rigidbody>().AddForce(character.GetComponent<Dancer>().MovementDirection * FORCE_IMPULSE);
+                    break;
                 }
+            }
+            if(dancer != null && Vector3.Distance(transform.position, dancer.transform.position) > DISTANCE_TOLERANCE)
+            {
+                GetComponent<Rigidbody>().velocity = (dancer.transform.position - transform.position).normalized * VELOCITY;
+            }
+            else
+            {
+                GetComponent<Rigidbody>().velocity = Vector3.zero;
             }
         }
         DetermineAnimation();

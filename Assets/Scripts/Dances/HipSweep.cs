@@ -11,7 +11,7 @@ public class HipSweep : Dance
 
     public override string Name => "HipSweep";
 
-    public HipSweep() : base(new HashSet<int> { 0, 1, 2, 3 }, 1)
+    public HipSweep() : base(new HashSet<int> { 0, 2 }, 1)
     {
     }
 

@@ -11,7 +11,7 @@ public class Dab : Dance
 
     public override string Name => "Dab";
 
-    public Dab() : base(new HashSet<int> { 0, 1, 2, 3 }, 1)
+    public Dab() : base(new HashSet<int> { 1, 3 }, 2)
     {
 
     }

@@ -6,9 +6,6 @@ using UnityEngine.UI;
 public class RhythmIndicator : MonoBehaviour, IGameStateReceiver, IGameStartListener, IRhythmListener
 {
     [SerializeField]
-    GameObject indicator;
-
-    [SerializeField]
     GameObject center;
 
     [SerializeField]
@@ -17,6 +14,7 @@ public class RhythmIndicator : MonoBehaviour, IGameStateReceiver, IGameStartList
     Dancer dancer;
     GameState gameState;
     float indicatorSpeed;
+    float timeTillNext;
 
     public GameState GameState { set => gameState = value; }
 
@@ -27,26 +25,35 @@ public class RhythmIndicator : MonoBehaviour, IGameStateReceiver, IGameStartList
         dancer = gameState.GetDancer(playerIndex);
     }
 
+    bool pulse = false;
+    float duration = 0;
+    float time = 0;
     public void MetronomeTick(int measure, int beatNumber, float intensity, bool accent, float timeToNextTick)
     {
-        int nextBeat = beatNumber + 1;
-        if(nextBeat == 4)
+        timeTillNext = timeToNextTick;
+        if (dancer.CurrentDance.Accents.Contains(beatNumber))
         {
-            nextBeat = 0;
+            pulse = true;
+            duration = 0.3f * timeTillNext;
+            time = 0;
         }
-
-        if(dancer.CurrentDance.Accents.Contains(nextBeat))
-        {
-            indicator.transform.position = startIndicatorPos;
-        }
-        
-        indicatorSpeed = (startIndicatorPos - center.transform.position).magnitude / timeToNextTick;
     }
 
     void Update()
     {
-        Vector3 currentPos = indicator.transform.position;
-        currentPos = Vector3.MoveTowards(currentPos, center.transform.position, indicatorSpeed * Time.deltaTime);
-        indicator.transform.position = currentPos;
+        if (pulse)
+        {
+            time += Time.deltaTime;
+            if (time < duration)
+            {
+                Vector3 scale = Vector3.one + Vector3.one * Mathf.Sin(2 * Mathf.PI * time / duration);
+                center.transform.localScale = scale;
+            }
+            else
+            {
+                center.transform.localScale = Vector3.one;
+                pulse = false;
+            }
+        }
     }
 }

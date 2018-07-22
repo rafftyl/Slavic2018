@@ -11,7 +11,7 @@ class DanceAnimationPair
 
 public class Dancer : MonoBehaviour, IRhythmListener, IGameStateReceiver
 {
-    const float BEAT_TOLERANCE = 1.0f;
+    const float BEAT_TOLERANCE = 0.65f;
 
     [SerializeField]
     List<DanceAnimationPair> danceAnimationPairs;
@@ -23,7 +23,7 @@ public class Dancer : MonoBehaviour, IRhythmListener, IGameStateReceiver
     private int playerNumber = 1;
     public int PlayerNumber { get => playerNumber; }
     private Fall fallDance = new Fall();
-    private Dance[] selectableDances = { new Rodeo(), new HipSweep(), new Dab(), new CookCopter() };
+    private Dance[] selectableDances = { /*new Rodeo(),*/  new Dab(), new HipSweep(), new CookCopter() };
     Dance currentDance;
     public Dance CurrentDance { get => currentDance; }
 
@@ -62,6 +62,9 @@ public class Dancer : MonoBehaviour, IRhythmListener, IGameStateReceiver
 
     public GameState GameState { set => value.RegisterDancer(this, playerNumber); }
 
+    float timeToAccent = 0;
+    float timeToNextAccent = 0;
+
     void Awake ()
     {
         Assert.IsNotNull(spriteAnimation);
@@ -79,6 +82,7 @@ public class Dancer : MonoBehaviour, IRhythmListener, IGameStateReceiver
         UpdateLinePoints();
     }
 
+    bool timeSet = false;
     void Update ()
     {
         movementDirection.x = Input.GetAxisRaw("Horizontal_" + playerNumber);
@@ -86,39 +90,20 @@ public class Dancer : MonoBehaviour, IRhythmListener, IGameStateReceiver
         movementDirection.z = Input.GetAxisRaw("Vertical_" + playerNumber);
         movementDirection = movementDirection.normalized;
 
-        if (Input.GetButtonUp("Beat_" + playerNumber))
-        {
-            beatPressedTimestamp = Time.time;
+        timeToAccent -= Time.deltaTime;
+        timeToNextAccent -= Time.deltaTime;
 
-            if (Mathf.Abs(lastLateBeat - beatPressedTimestamp) < beatTolerance)
+        if (Input.GetButtonDown("Beat_" + playerNumber))
+        {
+            if (Mathf.Abs(timeToAccent) < beatTolerance || Mathf.Abs(timeToNextAccent) < beatTolerance)
             {
-                //Debug.Log("Succesful beat " + previousBeatNumber + " tick tmstp: " + previousBeatTimestamp + " beat pressed: " + beatPressedTimestamp + " tolerance: " + beatTolerance);
-                currentDance.Perform(gameObject);
-                lastLateBeat = 0;
                 lastLatePress = 0.0f;
-            }
-            else if(lastLatePress == 0.0f)
+                CurrentDance.Perform(gameObject);            }
+            else
             {
-                lastLatePress = beatPressedTimestamp;                
+                Debug.Log("Failure");
+                CurrentDance.Fail(gameObject);
             }
-        }
-
-        if (lastLateBeat > 0.0f)
-        {
-            if (Mathf.Abs(previousBeatTimestamp - beatPressedTimestamp) > beatTolerance)
-            {
-                //Debug.Log("Unsuccesful beat " + previousBeatNumber + " tick tmstp: " + previousBeatTimestamp + " beat pressed: " + beatPressedTimestamp + " tolerance: " + beatTolerance);
-                currentDance.Fail(gameObject);
-                lastLateBeat = 0.0f;
-            }
-        }
-
-        if(lastLatePress > 0.0f && Mathf.Abs(Time.time - lastLatePress) > beatTolerance)
-        {
-            //Debug.Log("Unsuccesful beat " + previousBeatNumber + " tick tmstp: " + previousBeatTimestamp + " beat pressed: " + beatPressedTimestamp + " tolerance: " + beatTolerance);
-            currentDance.Fail(gameObject);
-            lastLateBeat = 0.0f;
-            lastLatePress = 0.0f;
         }
 
         if (IsStanding)
@@ -164,26 +149,26 @@ public class Dancer : MonoBehaviour, IRhythmListener, IGameStateReceiver
 
     public void MetronomeTick(int measure, int beatNumber, float intensity, bool accent, float timeToNextTick)
     {
-        previousBeatNumber = beatNumber;
-
-        if (currentDance.Accents.Contains(previousBeatNumber))
+        beatTolerance = BEAT_TOLERANCE * timeToNextTick;
+        int nextBeat = beatNumber + 1;
+        if (nextBeat == 4)
         {
-            previousBeatTimestamp = Time.time;
-            beatDuration = timeToNextTick;
-            beatTolerance = BEAT_TOLERANCE * beatDuration;
-           
-            if (Mathf.Abs(previousBeatTimestamp - beatPressedTimestamp) < beatTolerance)
+            nextBeat = 0;
+        }
+
+        if (CurrentDance.Accents.Contains(nextBeat))
+        {
+            if (!timeSet)
             {
-                //Debug.Log("Succesful beat " + previousBeatNumber + " tick tmstp: " + previousBeatTimestamp + " beat pressed: " + beatPressedTimestamp + " tolerance: " + beatTolerance);
-                currentDance.Perform(gameObject);
-                lastLateBeat = 0;
-                lastLatePress = 0;
+                timeToAccent = timeToNextTick;
+                timeSet = true;
             }
             else
             {
-                lastLateBeat = previousBeatTimestamp;                
+                timeToNextAccent = timeToNextTick;
+                timeSet = false;
             }
-        }
+        }        
     }
 
     void SetDanceAnimation(string danceName)

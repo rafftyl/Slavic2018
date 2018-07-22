@@ -8,7 +8,7 @@ public class CookCopter : Dance
 
     public override string Name => "CockCopter";
 
-    public CookCopter() : base(new HashSet<int> { 0, 1, 2, 3 }, 1)
+    public CookCopter() : base(new HashSet<int> { 0, 1, 2, 3 }, 2)
     {
 
     }

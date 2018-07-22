@@ -11,6 +11,6 @@ public class VictoryMessage : MonoBehaviour, IGameStopListener, IGameStateReceiv
     public void GameStopped()
     {
         gameObject.SetActive(true);
-        //text.SetText("Winner: Player " + gameState.WinnerNumber);
+        text.text = "Winner: Player " + gameState.WinnerNumber;
     }
 }

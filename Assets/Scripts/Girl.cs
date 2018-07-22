@@ -28,7 +28,7 @@ public class Girl : MonoBehaviour, IGameStateReceiver
     public float WOO_BOTTOM_LIMIT = -2.0f;
     private const int WOO_UNIMPRESSED_INDEX = 0;
     [SerializeField]
-    public float WOO_DECAY = 0.01f;
+    public float WOO_DECAY = 0.1f;
     [SerializeField]
     public float SLAP_COOLDOWN = 1.0f;
     [SerializeField]

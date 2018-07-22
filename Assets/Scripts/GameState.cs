@@ -11,6 +11,7 @@ public class GameState : MonoBehaviour
     private int winnerNumber = -1;
     public int WinnerNumber { get => winnerNumber; }
     Dictionary<int, float> currentPlayerScore;
+    private float transitionCooldown = 5.0f;
 
     [SerializeField]
     RhythmManager rhythmManager;
@@ -49,6 +50,14 @@ public class GameState : MonoBehaviour
         if(Input.GetButtonDown("Cancel"))
         {
             SceneManager.LoadScene("MainMenu");
+        }
+        if(winnerNumber > 0)
+        {
+            transitionCooldown -= Time.deltaTime;
+            if(transitionCooldown <= 0.0f)
+            {
+                SceneManager.LoadScene("MainMenu");
+            }
         }
     }
 
@@ -139,6 +148,7 @@ public class GameState : MonoBehaviour
             if (currentPlayerScore[playerNumber] >= WIN_SCORE)
             {
                 winnerNumber = playerNumber;
+                StopGame();
             }
         }
     }

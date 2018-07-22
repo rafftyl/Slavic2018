@@ -7,7 +7,7 @@ using System.Collections.Generic;
 public class GameState : MonoBehaviour
 {
     public const int MAX_PLAYERS = 2;
-    public const float WIN_SCORE = 10.0f;
+    public const float WIN_SCORE = 50.0f;
     private int winnerNumber = -1;
     public int WinnerNumber { get => winnerNumber; }
     Dictionary<int, float> currentPlayerScore;

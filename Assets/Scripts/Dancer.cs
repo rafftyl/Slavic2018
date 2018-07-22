@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.Assertions;
+using System;
 
 [System.Serializable]
 class DanceAnimationPair
@@ -13,6 +14,7 @@ public class Dancer : MonoBehaviour, IRhythmListener, IGameStateReceiver, IGameS
 {
     const float BEAT_TOLERANCE = 0.65f;
 
+    public event Action<bool> onDanceResult;
     [SerializeField]
     List<DanceAnimationPair> danceAnimationPairs;
 
@@ -83,10 +85,12 @@ public class Dancer : MonoBehaviour, IRhythmListener, IGameStateReceiver, IGameS
             if (Mathf.Abs(timeToAccent) < beatTolerance || Mathf.Abs(timeToNextAccent) < beatTolerance)
             {
                 CurrentDance.Perform(gameObject);
+                onDanceResult?.Invoke(true);
             }
             else
             {
                 CurrentDance.Fail(gameObject);
+                onDanceResult?.Invoke(false);
             }
         }
 

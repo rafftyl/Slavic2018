@@ -13,5 +13,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rhythmChangeData:
   - measure: 0
+    rhythmData: {fileID: 11400000, guid: 1ce0fa4ce182d6545aacc8917e3a04ac, type: 2}
+  - measure: 16
     rhythmData: {fileID: 11400000, guid: 0d02aceed0017664fab5d7dbd2e70643, type: 2}
+  - measure: 32
+    rhythmData: {fileID: 11400000, guid: 1ce0fa4ce182d6545aacc8917e3a04ac, type: 2}
+  - measure: 43
+    rhythmData: {fileID: 11400000, guid: 9cce28e4370ee76428d5ce93e44f8447, type: 2}
+  - measure: 56
+    rhythmData: {fileID: 11400000, guid: 1ce0fa4ce182d6545aacc8917e3a04ac, type: 2}
+  - measure: 52
+    rhythmData: {fileID: 11400000, guid: 1ce0fa4ce182d6545aacc8917e3a04ac, type: 2}
   audioClip: {fileID: 8300000, guid: e705380b548fcac45af8e880fdf4dcb2, type: 3}

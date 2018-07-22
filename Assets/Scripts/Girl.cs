@@ -121,26 +121,31 @@ public class Girl : MonoBehaviour, IGameStateReceiver
 
     public void Woo(int playerNumber, float wooFactor)
     {
-        if(takenBy == NOT_TAKEN)
+        if (currentWooFactors.ContainsKey(playerNumber))
         {
-            if (currentWooFactors.ContainsKey(playerNumber))
-            {
-                currentWooFactors[playerNumber] += wooFactor;
-            }
-            else
-            {
-                currentWooFactors.Add(playerNumber, wooFactor);
-                currentWooFactors[playerNumber] += WOO_IDLE_LIMIT;
-            }
-            if (wooFactor > 0 && currentWooFactors[playerNumber] >= WOO_TOP_LIMIT)
-            {
-                takenBy = playerNumber;
-            }
-            else if (wooFactor < 0 && currentWooFactors[playerNumber] < WOO_BOTTOM_LIMIT)
+            currentWooFactors[playerNumber] += wooFactor;
+        }
+        else
+        {
+            currentWooFactors.Add(playerNumber, wooFactor);
+            currentWooFactors[playerNumber] += WOO_IDLE_LIMIT;
+        }
+        if (wooFactor > 0 && currentWooFactors[playerNumber] >= WOO_TOP_LIMIT)
+        {
+            takenBy = playerNumber;
+        }
+        else if (wooFactor < 0)
+        {
+            if (currentWooFactors[playerNumber] < WOO_BOTTOM_LIMIT)
             {
                 currentWooFactors[playerNumber] = WOO_BOTTOM_LIMIT;
             }
-        }
+
+            if(currentWooFactors[playerNumber] <= WOO_IDLE_LIMIT)
+            {
+                takenBy = NOT_TAKEN;
+            }
+        }        
     }
 
     public void Retaliation(int playerNumber)

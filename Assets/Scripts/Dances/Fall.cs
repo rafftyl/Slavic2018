@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class Fall : Dance
 {
     const float WOO_LOST_RANGE = 1.0f;
-    const float WOO_LOST_VALUE = -0.4f;
+    const float WOO_LOST_VALUE = -7.0f;
 
     public override string Name => "Fall";
 

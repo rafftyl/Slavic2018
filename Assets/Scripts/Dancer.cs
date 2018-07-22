@@ -9,7 +9,7 @@ class DanceAnimationPair
     public RhythmSpriteSequence sequence;
 }
 
-public class Dancer : MonoBehaviour, IRhythmListener, IGameStateReceiver
+public class Dancer : MonoBehaviour, IRhythmListener, IGameStateReceiver, IGameStartListener
 {
     const float BEAT_TOLERANCE = 0.65f;
 
@@ -65,15 +65,6 @@ public class Dancer : MonoBehaviour, IRhythmListener, IGameStateReceiver
         Assert.IsTrue(playerNumber > 0, "Too small player number");
         Assert.IsNotNull(GetComponent<Rigidbody>(), "Missing player Rigidbody");
         Assert.IsTrue(selectableDances.Length >= 1, "No selectable dances");
-        currentDance = selectableDances[selectedDanceIndex];
-    }
-
-    void Start()
-    {
-        line = gameObject.GetComponent<LineRenderer>();
-        line.SetVertexCount(segments + 1);
-        line.useWorldSpace = false;
-        UpdateLinePoints();
     }
 
     bool timeSet = false;
@@ -192,5 +183,16 @@ public class Dancer : MonoBehaviour, IRhythmListener, IGameStateReceiver
                 angle += (360f / segments);
             }
         }
+    }
+
+    public void GameStarted()
+    {
+        line = gameObject.GetComponent<LineRenderer>();
+        line.SetVertexCount(segments + 1);
+        line.useWorldSpace = false;
+        currentDance = selectableDances[selectedDanceIndex];
+        currentDance.StartDancing(gameObject);
+        SetDanceAnimation(currentDance.Name);
+        UpdateLinePoints();
     }
 }
